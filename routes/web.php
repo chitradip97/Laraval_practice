@@ -106,7 +106,10 @@ Route::get('/update_todo',[TodoController::class,'update_todo']);
 Route::post('/update_backend',[TodoController::class,'update_crud']);
 // todo view
 Route::get('/view_todo',[TodoController::class,'view_crud']);
+// edit option
 Route::post('/edit_backend/{id}',[TodoController::class,'edit_backend']);
+// update todo
+Route::post('/update_todo_app/{id}',[TodoController::class,'update']);
 //Route::post('/view_backend/{id}', 'PostsController@approve');
 
 

@@ -125,8 +125,8 @@ class TodoController extends Controller
             ];
            // DB::table('todos')->insert($data);
             $affectedRows=DB::table('todos')
-       ->where('id',$userid)
-       ->update(['title' => $usertitle,'descripton'=>$dercription]);
+            ->where('id',$userid)
+            ->update(['title' => $usertitle,'descripton'=>$dercription]);
              if(DB::table('todos')->where('id','=',$userid)->get()->count()==1)
          {
             return response()->json(['active'=>1]);
@@ -145,7 +145,8 @@ class TodoController extends Controller
             $p_data=DB::table('todos')->get();
             return view('ajax.todo.view')->with(['all_data'=>$p_data]);
         }
-        public function edit_backend(Request $request,$id){
+        public function edit_backend(Request $request,$id)
+        {
            // dd($request);
             //$id=$request->input('tskid');
             
@@ -159,7 +160,30 @@ class TodoController extends Controller
         //  }
 
         }
-        
+
+         public function update(Request $request,$id)
+         {
+            $title=$request->input('title');
+            $desc=$request->input('desc');
+            $data=[
+                'title'=>$title,
+                'descripton'=>$desc
+            ];
+            $affectedRows=DB::table('todos')
+            ->where('id',$id)
+            ->update(['title' => $title,'descripton'=>$desc]);
+       
+             if(DB::table('todos')->where('id','=',$id)->get()->count()==1)
+             {
+                
+                $info=DB::table('todos')->where('id','=',$id)->get();
+                return response()->json(['data'=>$info]);
+             }
+            // else
+            // {
+            //     return response()->json(['active'=>0]);
+            // }
+        }
     
     
 }

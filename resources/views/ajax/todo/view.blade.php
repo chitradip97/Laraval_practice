@@ -18,7 +18,7 @@
         function edit(id){
             var item_id=id;
             console.log("hello");
-            //let item_id=$('.tskid').val();
+            
             console.log(id);
             $.ajax({
                 
@@ -29,93 +29,77 @@
                     if(status=="success")
                     {
                          console.log(data);
-                        //  if(data.active=1)
-                        // {
-                            // for (let val in data)
-                            // {
-                            //     `<tr class="select_row${data[val]}"><td>${val.id}</td>
-                            // <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
-                            // <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
-                            // <td>${val.created}</td>
-                            // <td>
-                            //   <button onclick="edit_done()" class="btn btn-success">Done</button>
-                            //           <button onclick="delete_data()" class="btn btn-danger">Delete</button>
-                            //   </td>
-                            // </tr>`;
-                            // }
-                            var jsonData = data.data;
-                            console.log(jsonData);
-                        //    jsonData.forEach(function(val)
-                        //    {
-                        //       content+=`
-                        //       <tr class="select_row${val.id}"><td>${val.id}</td>
-                        //     <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
-                        //     <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
-                        //     <td>${val.created}</td>
-                        //     <td>
-                        //       <button onclick="edit_done()" class="btn btn-success">Done</button>
-                        //               <button onclick="delete_data()" class="btn btn-danger">Delete</button>
-                        //       </td>
-                        //     </tr>
-                        //     `;
-                        //    });
-                            content=``;
-                           jsonData.forEach((val)=>{
-                            content=content+`
-                            <td>${val.id}</td>
-                            <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
-                            <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
-                            <td>${val.created}</td>
-                            <td>
-                              <button onclick="edit_done()" class="btn btn-success">Done</button>
-                                      <button onclick="delete_data()" class="btn btn-danger">Delete</button>
-                              </td>
+                         var jsonData = data.data;
+                         console.log(jsonData);
+                         content=``;
+                        jsonData.forEach((val)=>{
+                         content=content+`
+                         <td>${val.id}</td>
+                         <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
+                         <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
+                         <td>${val.created}</td>
+                         <td>
+                           <button onclick="update(${id})" class="btn btn-success">Done</button>
+                                   <button onclick="delete_data()" class="btn btn-danger">Delete</button>
+                           </td>
+                         
+                         `;
+                         })
+                        $(`#select_row${item_id}`).html(content);
+                     }
+                 },
+                  'error':function (error){
+                      if(error) throw error;
+                  }
+             });
+         }
+                        
+         function  update(id)
+         {
+            var item_id=id;
+            var title=$('.utitle').val();
+            var desc=$('.udesc').val();
+            
+            $.ajax({
+                'url':`{{url('/update_todo_app')}}/${id}`,
+                'method':'post',
+                'data':{'_token':'{{csrf_token()}}',
+                        'title':title,
+                        'desc':desc
+                        },
+                'success':function(data,status){
+                    if(status=="success")
+                    {
+                         console.log(data);
+                         var jsonData = data.data;
+                         console.log(jsonData);
+                         content=``;
+                        jsonData.forEach((val)=>{
+                         content=content+`
+                         <td>${val.id}</td>
+                         <td>${val.title}</td>
+                         <td>${val.descripton}</td>
+                         <td>${val.created}</td>
+                         <td>
+                           <button onclick="update(${id})" class="btn btn-success">Edit</button>
+                                   <button onclick="delete_data()" class="btn btn-danger">Delete</button>
+                           </td>
+                         
+                         `;
+                         })
+                        $(`#select_row${item_id}`).html(content);
+                     }
+                 },
+                  'error':function (error){
+                      if(error) throw error;
+                  }
+            })
+         }             
                             
-                            `;
-                            })
-                           $(`#select_row${item_id}`).html(content);
-                            //  foreach(data as $val)
-                            //  {
-                            //      `<tr class="select_row${val.id}"><td>${val.id}</td>
-                            // <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
-                            // <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
-                            // <td>${val.created}</td>
-                            // <td>
-                            //   <button onclick="edit_done()" class="btn btn-success">Done</button>
-                            //           <button onclick="delete_data()" class="btn btn-danger">Delete</button>
-                            //   </td>
-                            // </tr>`
-                            //  }   
-                        //   var temp=data.map((val)=>{
-                        //           return `<tr class="select_row${val.id}"><td>${val.id}</td>
-                        //     <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
-                        //     <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
-                        //     <td>${val.created}</td>
-                        //     <td>
-                        //       <button onclick="edit_done()" class="btn btn-success">Done</button>
-                        //               <button onclick="delete_data()" class="btn btn-danger">Delete</button>
-                        //       </td>
-                        //     </tr>`;            
-                        //       })
-                        //       output=output+temp.join('');
-                        //       // $('#result').html(output);
-                        //   $(`#select_row${val.id}`).html(output);
-                        // }
-                        // else
-                        // {
-                        //  $(`#info${val.id}`).html();
-                        // }
 
 
                         
 
-                    }
-                },
-                 'error':function (error){
-                     if(error) throw error;
-                 }
-            });
-        }
 
     </script>
     
