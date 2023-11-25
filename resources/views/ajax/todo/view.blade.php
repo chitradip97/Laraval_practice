@@ -122,6 +122,42 @@
                 }
             });
         }
+
+        function addTodo(){
+              var todoData = {
+                  'id':$('#item_id').val(),
+                  'title': $('#titleText').val(),
+                  'description' : $('#descText').val(),
+                  '_token':'{{csrf_token()}}'
+              };
+
+
+              console.log(todoData);
+              $.ajax({
+                'url':'{{url('/add_todo')}}',
+                'method':'POST',
+                'data':todoData,
+                'success':function(data,status){
+                    if(status == 'success'){
+                          //console.log(data);
+                          
+                          
+                          $('#addTodoModal').modal('hide');
+                          location.reload();
+                          $('#info').html(`<div class='alert alert-success'>Your data has <strong>Insert Successfully</strong>.</div>`);
+
+
+
+
+                    }
+                },
+                'error': (error)=>{
+                    if(error) throw error;
+                }
+              });
+
+
+         }
                        
 
                    
@@ -132,7 +168,8 @@
 
 
     </script>
-    
+
+<div id="info"></div>
 
     <div class="container-fluid">
         <div class="row">
@@ -143,7 +180,7 @@
                         <h5 class="basic_font">Employee data :</h5>
                     </div> 
                     <div class="col-md-2 flex-end">
-                    <button type="button" class="btn btn-primary">Insert</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTodoModal" >Insert</button>
                     </div>
                     </div>
                 </div>
@@ -185,5 +222,39 @@
         </div>
     </div>
     <div id="info"></div>
+
+     <!--Adding a BS-4 Modal Add Window -->
+<div class="modal" tabindex="-1" id="addTodoModal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Todo:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Id:</label>
+                <input type="text" id="item_id" required class="form-control">
+             </div>
+           <div class="form-group">
+              <label>Title:</label>
+              <input type="text" id="titleText" required class="form-control">
+           </div>
+           <div class="form-group">
+              <label>Description :</label>
+              <textarea  id="descText" cols="30" rows="10" required class="form-control"></textarea>
+           </div>
+           <div class="form-group">
+              <button type="button" onclick="addTodo()" class="btn btn-sm btn-outline-warning">Add</button>
+           </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+
 </body>
 </html>

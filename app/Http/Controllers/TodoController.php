@@ -203,6 +203,21 @@ class TodoController extends Controller
              }
          
         }
+
+        function add_todo(Request $request)
+        {
+            $userid=$request->input('id');
+            $usertitle=$request->input('title');
+            $dercription=$request->input('description');
+            $data=[
+                'id'=>$userid,
+                'title'=>$usertitle,
+                'descripton'=>$dercription
+            ];
+            DB::table('todos')->insert($data);
+            return response()->json(['active'=>1]);
+        }
+            
     
     
 }

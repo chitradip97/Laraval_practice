@@ -112,6 +112,8 @@ Route::post('/edit_backend/{id}',[TodoController::class,'edit_backend']);
 Route::post('/update_todo_app/{id}',[TodoController::class,'update']);
 // delete todo
 Route::post('/delete_todo_app/{id}',[TodoController::class,'delete']);
+// Add todo
+Route::post('/add_todo',[TodoController::class,'add_todo']);
 //Route::post('/view_backend/{id}', 'PostsController@approve');
 
 
