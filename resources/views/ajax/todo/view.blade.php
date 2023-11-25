@@ -30,25 +30,62 @@
                          console.log(data);
                          if(data.active=1)
                         {
-                         var temp=data.map((val)=>{
-                                 return `<tr class="select_row${val.id}"><td>${val.id}</td>
-                           <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
-                           <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
-                           <td>${val.created}</td>
-                           <td>
-                             <button onclick="edit_done()" class="btn btn-success">Done</button>
-                                     <button onclick="delete_data()" class="btn btn-danger">Delete</button>
-                             </td>
-                           </tr>`;            
-                             })
-                             output=output+temp.join('');
-                             // $('#result').html(output);
-                         $(`#select_row${val.id}`).html(output);
+                            for (let val in data)
+                            {
+                                `<tr class="select_row${data[val]}"><td>${val.id}</td>
+                            <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
+                            <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
+                            <td>${val.created}</td>
+                            <td>
+                              <button onclick="edit_done()" class="btn btn-success">Done</button>
+                                      <button onclick="delete_data()" class="btn btn-danger">Delete</button>
+                              </td>
+                            </tr>`;
+                            }
+                            var jsonData = data;
+                           jsonData.forEach(function(obj){
+                              content+=`<tr class="select_row${val.id}"><td>${val.id}</td>
+                            <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
+                            <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
+                            <td>${val.created}</td>
+                            <td>
+                              <button onclick="edit_done()" class="btn btn-success">Done</button>
+                                      <button onclick="delete_data()" class="btn btn-danger">Delete</button>
+                              </td>
+                            </tr>`;
+                           });
+                           $(`#select_row${val.id}`).html(content);
+                            //  foreach(data as $val)
+                            //  {
+                            //      `<tr class="select_row${val.id}"><td>${val.id}</td>
+                            // <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
+                            // <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
+                            // <td>${val.created}</td>
+                            // <td>
+                            //   <button onclick="edit_done()" class="btn btn-success">Done</button>
+                            //           <button onclick="delete_data()" class="btn btn-danger">Delete</button>
+                            //   </td>
+                            // </tr>`
+                            //  }   
+                          var temp=data.map((val)=>{
+                                  return `<tr class="select_row${val.id}"><td>${val.id}</td>
+                            <td><input type="text" name="utitle" class="utitle" value="${val.title}"></td>
+                            <td><input type="text" name="udesc" class="udesc" value="${val.descripton}"></td>
+                            <td>${val.created}</td>
+                            <td>
+                              <button onclick="edit_done()" class="btn btn-success">Done</button>
+                                      <button onclick="delete_data()" class="btn btn-danger">Delete</button>
+                              </td>
+                            </tr>`;            
+                              })
+                              output=output+temp.join('');
+                              // $('#result').html(output);
+                          $(`#select_row${val.id}`).html(output);
                         }
-                        else
-                        {
-                         $(`#info${val.id}`).html();
-                        }
+                        // else
+                        // {
+                        //  $(`#info${val.id}`).html();
+                        // }
 
 
                         
