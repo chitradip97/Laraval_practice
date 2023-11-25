@@ -184,6 +184,25 @@ class TodoController extends Controller
             //     return response()->json(['active'=>0]);
             // }
         }
+
+        function delete(Request $request,$id)
+        {
+            
+            
+            $affectedRows=DB::table('todos')
+                            ->where('id',$id)
+                            ->delete();
+           // DB::table('todos')->delete($data);
+             if($affectedRows>0)
+             {
+                return response()->json(['active'=>1,'message'=>'delete success']);
+             }
+             else
+             {
+                 return response()->json(['active'=>0,'message'=>'delete failed']);
+             }
+         
+        }
     
     
 }

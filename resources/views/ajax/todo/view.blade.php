@@ -94,7 +94,37 @@
                       if(error) throw error;
                   }
             })
-         }             
+         }
+         
+         function delete_data(id)
+        {
+            console.log("hello");
+            
+            $.ajax({
+                'url':`{{url('/delete_todo_app')}}/${id}`,
+                'method':'post',
+                'data':{
+                    '_token':'{{csrf_token()}}'
+                    
+                },
+                'success':function(data,status){
+                    if(status=="success")
+                    {
+                        console.log(data);
+                        location.reload();
+                        // $('#info').html(`<h4 style="color:green; font-weight: bold">${data.message}</h4>`);
+                        $('#info').html(`<div class='alert alert-danger'>Your data has <strong>${data.message}</strong>.</div>`);
+                    
+                    }  
+                },
+                'error':function (error){
+                    console.log(error);
+                }
+            });
+        }
+                       
+
+                   
                             
 
 
@@ -143,7 +173,7 @@
                                 
                                 <td>
                                     <button onclick="edit({{$data->id}})" class="btn btn-success">Edit</button>
-                                    <button onclick="delete_data()" class="btn btn-danger">Delete</button>
+                                    <button onclick="delete_data({{$data->id}})" class="btn btn-danger">Delete</button>
                                     
                                 </td>
                             </tr>
@@ -154,5 +184,6 @@
             </div>
         </div>
     </div>
+    <div id="info"></div>
 </body>
 </html>
