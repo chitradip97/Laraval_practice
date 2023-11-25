@@ -152,7 +152,7 @@ class TodoController extends Controller
          $info=DB::table('todos')->where('id','=',$id)->get();
          if(DB::table('todos')->where('id','=',$id)->get()->count()==1)
          {
-             return response()->json(['active'=>1,'data'=>$info]);
+             return response()->json(['active'=>1,'database'=>$info]);
          }
          else{
              return response()->json(['active'=>0]);
