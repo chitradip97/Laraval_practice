@@ -177,7 +177,7 @@
                 <div class="card-footer">
                     <div class="row">
                     <div class="col-md-10 ">
-                        <h5 class="basic_font">Employee data :</h5>
+                        <h5 class="basic_font">Item data :</h5>
                     </div> 
                     <div class="col-md-2 flex-end">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTodoModal" >Insert</button>
