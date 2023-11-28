@@ -9,6 +9,7 @@ use App\http\controllers\crudController;
 use App\http\controllers\loginController;
 use App\http\controllers\AjaxController;
 use App\http\controllers\TodoController;
+use App\http\controllers\passwordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,6 +116,13 @@ Route::post('/delete_todo_app/{id}',[TodoController::class,'delete']);
 // Add todo
 Route::post('/add_todo',[TodoController::class,'add_todo']);
 //Route::post('/view_backend/{id}', 'PostsController@approve');
+
+
+Route::get('/user',[passwordController::class,'signin']);
+Route::post('/user/add',[passwordController::class,'addUser']);
+Route::post('/user/login',[passwordController::class,'login']);
+
+
 
 
 

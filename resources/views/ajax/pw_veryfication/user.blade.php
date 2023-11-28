@@ -17,7 +17,7 @@
                 'email':$('#p1').val()
             };
             $.ajax({
-                'url':{{url('/user/add')}},
+                'url':`{{url('/user/add')}}`,
                 'data':signUpData,
                 'method':'post',
                 'success':function(data,status)
@@ -32,11 +32,38 @@
                             ducument.getElementById('t1').focus();
                         }
                     }
-                }
+                },
                 'error':function(error){
                     if(error) throw error;
                 }
             });
+        }
+
+        function signIn()
+        {
+            var loginData ={
+                '_token':'{{csrf_token()}}';
+                    'username':$('#uname').val();
+                    'pass1':$('#pw1').val();
+
+            }
+            $.ajax({
+                'url':`url('/user/login')`,
+                'method':'post',
+                'data':loginData,
+                'success':function(data,status){
+                    if(status=='success')
+                    {
+                        console.log(data)
+                    }
+                      else  {
+                        alert('Wrong Credential!');
+
+                        }
+                    }
+                });
+
+            
         }
 
     </script> 
@@ -73,7 +100,7 @@
             
             <tr>
                 <td>Email:</td>
-                <td><input type="text" name="uname" id="umane" ></td>
+                <td><input type="text" name="uname" id="uname" ></td>
             </tr>
             <tr>
                 <td>Password:</td>
