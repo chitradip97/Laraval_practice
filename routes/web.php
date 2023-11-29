@@ -10,6 +10,7 @@ use App\http\controllers\loginController;
 use App\http\controllers\AjaxController;
 use App\http\controllers\TodoController;
 use App\http\controllers\passwordController;
+use App\http\controllers\bookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -121,6 +122,19 @@ Route::post('/add_todo',[TodoController::class,'add_todo']);
 Route::get('/user',[passwordController::class,'signin']);
 Route::post('/user/add',[passwordController::class,'addUser']);
 Route::post('/user/login',[passwordController::class,'login']);
+
+
+
+
+// exam 3 Book store data
+// show data
+Route::get('/show_publisher',[bookController::class,'index']);
+Route::get('/publisher_info',[bookController::class,'getAllData']);
+// insert data
+Route::get('/insert_data_view',[bookController::class,'insert_show']);
+Route::post('/insert_data',[bookController::class,'submit_data']);
+// search data
+Route::post('/search_data',[bookController::class,'search_data']);
 
 
 
