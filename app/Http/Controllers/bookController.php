@@ -55,13 +55,37 @@ class bookController extends Controller
 
 
     }
-    // function search_data(Request $request){
-    //     $book_id=$request->input('book_id');
-    //     $book_data=DB::table('book_info')->where('emp_id','=',$id)->get();
-    //     $Book_id=
-    //     $book_data=DB::table('book_info')->where('emp_id','=',$book_data['Pub_code'])->get();
-    //     return view('exam_3/insert')->with(['employes'=>$emp_data,'less_employes'=>$less_id_emp,'greater_employes'=>$greater_id_emp]);
+     function search_data(Request $request){
+         $book_id=$request->input('book_id');
+         $book_data=DB::table('book_info')->where('Book_id','=',$book_id)->get();
+         foreach($book_data as $data)
+         {
+            $book_id_str=$data->Book_id;
+            $Book_name=$data->Book_nm;
+            $Book_author=$data->Book_author;
+            $Pub_code=$data->Pub_code;
+         }
+         //$Book_id=
+         $pub_data=DB::table('publisher_info')->where('Pub_code','=',$Pub_code)->get();
+         foreach($pub_data as $data)
+         {
+            $Pub_name=$data->Pub_name;
+            $Pub_Address=$data->Pub_Address;
+            $Pub_cost=$data->Pub_cost;
+         }
+         $all_data=[
+            'book_id'=>$book_id_str,
+            'Book_name'=>$Book_name,
+            'Book_author'=>$Book_author,
+            'Pub_code'=>$Pub_code,
+            'Pub_name'=>$Pub_name,
+            'Pub_Address'=>$Pub_Address,
+            'Pub_cost'=>$Pub_cost
+
+         ];
+
+         return view('exam_3/insert')->with(['all_data'=>$all_data,'book_id'=>$book_id_str,'Book_name'=>$Book_name,'Book_author'=>$Book_author,'Pub_code'=>$Pub_code,'Pub_name'=>$Pub_name,'Pub_Address'=>$Pub_Address,'Pub_cost'=>$Pub_cost]);
         
 
-    // }
+     }
 }

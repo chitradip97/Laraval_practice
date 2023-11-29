@@ -61,11 +61,75 @@
     <form action="{{'/search_data'}}" method="POST" enctype="multipart/form-data">
         @csrf
         <table>
+            <tr>
             <td>Search Book Id :</td>
-            <td><input type="number" name="search"></td>
+            <td><input type="number" name="book_id"></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <input type="submit"  value="Submit">
+                </td>
+            </tr>
+            
+            
         </table>
     </form>
 
 </div>
+{{-- @if(isset($all_data))
+<div >
+    <table class='table table-hover table-bordered'>
+        <tr>
+        <th>Book_id:</th>
+        <th>Book_name:</th>
+        <th>Book_author :</th>
+        <th>Pub_code:</th>
+        <th>Pub_name:</th>
+        <th>Pub_Address:</th>
+        <th>Pub_cost :</th>
+        </tr>
+        @foreach($all_data as $data)
+            <tr>
+                <td>{{$data->book_id}}</td>
+                <td>{{$data->Book_name}}</td>
+                <td>{{$data->Book_author}}</td>
+                <td>{{$data->Pub_code}}</td>
+                <td>{{$data->Pub_name}}</td>
+                <td>{{$data->Pub_Address}}</td>
+                <td>{{$data->Pub_cost }}</td>
+                </tr>
+        @endforeach
+        </table>
+    
+</div>
+@endif --}}
+
+@if(isset($all_data))
+<div >
+    <table class='table table-hover table-bordered'>
+        <tr>
+        <th>Book_id:</th>
+        <th>Book_name:</th>
+        <th>Book_author :</th>
+        <th>Pub_code:</th>
+        <th>Pub_name:</th>
+        <th>Pub_Address:</th>
+        <th>Pub_cost :</th>
+        </tr>
+        {{-- @foreach($all_data as $data) --}}
+            <tr>
+                <td>{{$book_id}}</td>
+                <td>{{$Book_name}}</td>
+                <td>{{$Book_author}}</td>
+                <td>{{$Pub_code}}</td>
+                <td>{{$Pub_name}}</td>
+                <td>{{$Pub_Address}}</td>
+                <td>{{$Pub_cost }}</td>
+                </tr>
+        {{-- @endforeach --}}
+        </table>
+    
+</div>
+@endif
 </body>
 </html>
