@@ -76,34 +76,6 @@
     </form>
 
 </div>
-{{-- @if(isset($all_data))
-<div >
-    <table class='table table-hover table-bordered'>
-        <tr>
-        <th>Book_id:</th>
-        <th>Book_name:</th>
-        <th>Book_author :</th>
-        <th>Pub_code:</th>
-        <th>Pub_name:</th>
-        <th>Pub_Address:</th>
-        <th>Pub_cost :</th>
-        </tr>
-        @foreach($all_data as $data)
-            <tr>
-                <td>{{$data->book_id}}</td>
-                <td>{{$data->Book_name}}</td>
-                <td>{{$data->Book_author}}</td>
-                <td>{{$data->Pub_code}}</td>
-                <td>{{$data->Pub_name}}</td>
-                <td>{{$data->Pub_Address}}</td>
-                <td>{{$data->Pub_cost }}</td>
-                </tr>
-        @endforeach
-        </table>
-    
-</div>
-@endif --}}
-
 @if(isset($all_data))
 <div >
     <table class='table table-hover table-bordered'>
@@ -118,6 +90,34 @@
         </tr>
         {{-- @foreach($all_data as $data) --}}
             <tr>
+                <td>{{$all_data['book_id']}}</td>
+                <td>{{$all_data['Book_name']}}</td>
+                <td>{{$all_data['Book_author']}}</td>
+                <td>{{$all_data['Pub_code']}}</td>
+                <td>{{$all_data['Pub_name']}}</td>
+                <td>{{$all_data['Pub_Address']}}</td>
+                <td>{{$all_data['Pub_cost'] }}</td>
+                </tr>
+        {{-- @endforeach --}}
+        </table>
+    
+</div>
+@endif
+
+{{-- @if(isset($all_data))
+<div >
+    <table class='table table-hover table-bordered'>
+        <tr>
+        <th>Book_id:</th>
+        <th>Book_name:</th>
+        <th>Book_author :</th>
+        <th>Pub_code:</th>
+        <th>Pub_name:</th>
+        <th>Pub_Address:</th>
+        <th>Pub_cost :</th>
+        </tr>
+        
+            <tr>
                 <td>{{$book_id}}</td>
                 <td>{{$Book_name}}</td>
                 <td>{{$Book_author}}</td>
@@ -126,10 +126,10 @@
                 <td>{{$Pub_Address}}</td>
                 <td>{{$Pub_cost }}</td>
                 </tr>
-        {{-- @endforeach --}}
+        
         </table>
     
-</div>
-@endif
+</div> --}}
+{{-- @endif --}}
 </body>
 </html>
