@@ -135,7 +135,8 @@ Route::get('/insert_data_view',[bookController::class,'insert_show']);
 Route::post('/insert_data',[bookController::class,'submit_data']);
 // search data
 Route::post('/search_data',[bookController::class,'search_data']);
-
+// login verify
+Route::post('/login_verify',[bookController::class,'login_verify']);
 
 
 
