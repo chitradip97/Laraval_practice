@@ -11,6 +11,7 @@ use App\http\controllers\AjaxController;
 use App\http\controllers\TodoController;
 use App\http\controllers\passwordController;
 use App\http\controllers\bookController;
+use App\http\controllers\postController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,14 @@ Route::post('/add_todo',[TodoController::class,'add_todo']);
 Route::get('/user',[passwordController::class,'signin']);
 Route::post('/user/add',[passwordController::class,'addUser']);
 Route::post('/user/login',[passwordController::class,'login']);
+
+
+// Model route
+Route::get('/alldata',[postController::class,'index']);
+Route::get('/data_search/{id}',[postController::class,'show']);
+Route::get('/addform',[postController::class,'loadform']);
+Route::post('/post_add',[postController::class,'add']);
+
 
 
 
