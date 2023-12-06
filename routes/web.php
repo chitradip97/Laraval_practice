@@ -130,6 +130,10 @@ Route::get('/alldata',[postController::class,'index']);
 Route::get('/data_search/{id}',[postController::class,'show']);
 Route::get('/addform',[postController::class,'loadform']);
 Route::post('/post_add',[postController::class,'add']);
+Route::get('/delpost/{id}',[postController::class,'delete']);
+Route::get('/editpost/{id}',[postController::class,'edit']);
+Route::post('/upd_post',[postController::class,'update']);
+
 
 
 

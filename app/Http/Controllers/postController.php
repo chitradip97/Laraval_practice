@@ -31,4 +31,25 @@ class postController extends Controller
     $newPost->save();
     return redirect("/alldata")->with(['messege'=>'inserted successfully']);
    }
+
+   public function delete($id)
+   {
+      Post::whereId($id)->delete();
+      return redirect("/alldata")->with('messege','post has been deletedsuccessfully');
+   }
+
+   public function edit($id):View{
+      $post=Post::findOrFail($id);
+      return view('model_view.edit')->with(['post'=>$post]);
+   }
+
+   public function update(Request $req)
+   {
+      $editTitle=$req->input('editTitle');
+      $editDesc=$req->input('editDesc');
+      $id=$req->input('hid');
+      $updateData=['title'=>$editTitle,'description'=>$editDesc];
+      Post::whereId($id)->update($updateData);
+      return redirect('/alldata')->with(['messege'=>'one post updated successfully']);
+   }
 }

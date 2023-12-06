@@ -136,7 +136,7 @@ function deleteTodo(id){
                   $('#descEditText').val(jsonData.description);
                   todo_id = jsonData.id;
                 }
-            },
+            },3
             'error':(error)=>{}
           });
          }

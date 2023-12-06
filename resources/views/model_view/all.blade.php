@@ -19,6 +19,10 @@
         <tr>
             <td>{{$res->title}}</td>
             <td>{{$res->description}}</td>
+            <td>
+                <p><a href="{{url('editpost')}}/{{$res->id}}">Edit</a></p>
+                <p><a href="{{url('delpost')}}/{{$res->id}}">delete</a></p>
+            </td>
         </tr>
         @endforeach
     </table>
